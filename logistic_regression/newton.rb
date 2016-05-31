@@ -32,10 +32,11 @@ class Newton
   end
 
   def hessian_matrix
-    x_matrix.transpose * s_matrix * x_matrix
+    data_x.transpose * s_matrix * data_x
   end
 
   def s_matrix
+     Matrix.diagonal(*h_x(theta, data_x).map{|e| e*(1 - e)}.to_a)
   end
 end
 
